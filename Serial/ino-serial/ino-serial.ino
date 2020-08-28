@@ -16,7 +16,7 @@ void setup(){
 
 void loop(){
   char* msg = "";
-  Serial.println(1);   
+  Serial.println(1);
   delay(5000);
   if(Serial.available() > 0)
   {
@@ -29,6 +29,7 @@ void loop(){
       delay(100);
     }
     TV.println(msg);
+    Serial.println(2);
     delay(2000);
   }
 }
