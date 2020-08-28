@@ -1,6 +1,7 @@
 import serial
 import serialweathertest as swt
 from findArduino import findArduino
+from credentials import credentials
 
 arduino = findArduino()
 ser = serial.Serial(str(arduino), 9600)
@@ -28,6 +29,8 @@ def sendSerial(message, serialobj):
 if __name__ == '__main__':
 	weather = swt.weatherReport()
 	print(weather.keys())
+
+
 """
 	while 1: 
 	    if(ser.in_waiting > 0):
