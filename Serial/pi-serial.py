@@ -27,7 +27,7 @@ def sendSerial(message, serialobj):
 		return (False, instance)
 
 if __name__ == '__main__':
-	weather = swt.weatherReport()
+	weather = swt.weatherReport(credentials)
 	print(weather.keys())
 
 
