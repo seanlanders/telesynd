@@ -13,6 +13,8 @@ def decodeSerial(line):
 			weatherMsg = weatherMsg + str(weather["key"])
 		print(weatherMsg)
 		ser.write(weatherMsg)
+	else:
+		print("Recieved: ", line)
 	return response
 
 def encodeSerial(response):
@@ -30,8 +32,6 @@ if __name__ == '__main__':
 	weather = swt.weatherReport(credentials)
 	print(weather.keys())
 
-
-"""
 	while 1: 
 	    if(ser.in_waiting > 0):
 	        line = ser.readline()
@@ -43,4 +43,3 @@ if __name__ == '__main__':
 	       		pass
 	       	else:
 	    		print(messageSent[1])
-"""
