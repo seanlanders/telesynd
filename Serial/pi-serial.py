@@ -6,13 +6,16 @@ from credentials import credentials
 arduino = findArduino()
 ser = serial.Serial(str(arduino), 9600)
 
-def decodeSerial(line):
+def prepWeather(credential):
+	weather = swt.weatherReport(credential)
+	for key in weather.keys():
+		weatherMsg = weatherMsg + str(weather["key"])
+	return weatherMsg
+
+def decodeSerial(line, credential):
 	if b"weather" in line:
-		weather = swt.weatherReport()
-		for key in weather.keys():
-			weatherMsg = weatherMsg + str(weather["key"])
-		print(weatherMsg)
-		response = weatherMsg
+		weather = prepareWeather(credential)
+		response = weather
 	else:
 		print("Received: ", line)
 		response = line
@@ -37,10 +40,10 @@ if __name__ == '__main__':
 	    if(ser.in_waiting > 0):
 	        line = ser.readline()
 	        print(line)
-	        response = decodeSerial(line)
+	        response = decodeSerial(line, credentials)
 	        message = encodeSerial(response)
 	        messageSent = sendSerial(message)
 	        if messageSent[0] == True:
-	        	print(messageSent[0])
+	        	print("Sent ",message)
 	        else:
 	        	print(messageSent[1])
