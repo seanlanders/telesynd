@@ -11,8 +11,8 @@ def findArduino():
 		print(p.hwid)
 		for entry in p:
 			print(entry)
-		if ardser in p:
-			arduino_ports.append(p.hwid)
+			if ardser in entry:
+				arduino_ports.append(p.device)
 	if not arduino_ports:
 		return IOError("No Arduino found")
 	if len(arduino_ports) > 1:
