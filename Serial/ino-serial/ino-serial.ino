@@ -9,5 +9,6 @@ void loop(){
   if(Serial.available()){
     r = Serial.read();
     Serial.println(r);
+    delay(2000)
   }
 }
