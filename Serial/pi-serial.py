@@ -29,7 +29,7 @@ def decodeSerial(line, credential):
         response = "Waiting . . . "
     else:
         print("Received: ", line)
-        response = line.decode()
+        response = prepWeather(credential)
     return response
 
 def encodeSerial(response):
