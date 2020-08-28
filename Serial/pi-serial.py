@@ -10,7 +10,7 @@ def prepWeather(credential):
 	weather = swt.weatherReport(credential)
 	weatherMsg = ""
 	for key in weather.keys():
-		weatherMsg = weatherMsg + str(weather["key"])
+		weatherMsg = weatherMsg + str(weather[key])
 	return weatherMsg
 
 def decodeSerial(line, credential):
