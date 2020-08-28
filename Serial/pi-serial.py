@@ -39,7 +39,7 @@ if __name__ == '__main__':
 	        response = decodeSerial(line)
 	        message = encodeSerial(response)
 	        messageSent = sendSerial(message)
-	       	if messageSent[0] == True:
-	       		print(messageSent[0])
-	       	else:
-	    		print(messageSent[1])
+	        if messageSent[0] == True:
+	        	print(messageSent[0])
+	        else:
+	        	print(messageSent[1])
