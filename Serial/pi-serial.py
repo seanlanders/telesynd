@@ -7,14 +7,15 @@ arduino = findArduino()
 ser = serial.Serial(str(arduino), 9600)
 
 def decodeSerial(line):
-	if line == "weather":
+	if b"weather" in line:
 		weather = swt.weatherReport()
 		for key in weather.keys():
 			weatherMsg = weatherMsg + str(weather["key"])
 		print(weatherMsg)
-		ser.write(weatherMsg)
+		response = weatherMsg
 	else:
-		print("Recieved: ", line)
+		print("Received: ", line)
+		response = line
 	return response
 
 def encodeSerial(response):
