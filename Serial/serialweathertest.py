@@ -37,7 +37,7 @@ def getLocdata(IP, credential):
 	locdata = json.loads(locdata)
 	return locdata
 
-def getWeather(loc, credentials):
+def getWeather(loc, credential):
 	requestURL = API["openweather"] + "appid=" + credential["openweather"] + "&q=" + loc
 	response = get(requestURL).text
 	weather = json.loads(response)
