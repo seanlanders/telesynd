@@ -43,7 +43,7 @@ if __name__ == '__main__':
 	        print(line)
 	        response = decodeSerial(line, credentials)
 	        message = encodeSerial(response)
-	        messageSent = sendSerial(message, arduino)
+	        messageSent = sendSerial(message, ser)
 	        if messageSent[0] == True:
 	        	print("Sent ",message)
 	        else:
