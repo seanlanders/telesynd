@@ -11,7 +11,7 @@ def findArduino():
 		print(p.hwid)
 		for entry in p:
 			print(entry)
-		if 'Arduino' in p.description:
+		if ardser in p.hwid:
 			arduino_ports.append(p)
 	if not arduino_ports:
 		return IOError("No Arduino found")
