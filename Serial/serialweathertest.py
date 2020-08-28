@@ -30,14 +30,14 @@ def getIP():
 	ip = get(API["ipify"]).text
 	return ip
 
-def getLocdata(IP):
+def getLocdata(IP, credential):
 	locdataRequest = API["ipstack"]+IP+"?access_key=" + credential["ipstack"]
 	print(locdataRequest)
 	locdata = get(locdataRequest).text
 	locdata = json.loads(locdata)
 	return locdata
 
-def getWeather(loc):
+def getWeather(loc, credentials):
 	requestURL = API["openweather"] + "appid=" + credential["openweather"] + "&q=" + loc
 	response = get(requestURL).text
 	weather = json.loads(response)
@@ -54,11 +54,11 @@ def convertK2F(temperature):
 	temp = pytemperature.k2f(temperature)
 	return temp
 
-def weatherReport():
+def weatherReport(credential):
 	ip = getIP()
-	locdata = getLocdata(ip)
+	locdata = getLocdata(ip, credentials)
 	location = locdata(['city']) + ","+locdata['region_name']
-	weather = getWeather(locdata['city'])
+	weather = getWeather(locdata['city'], credentials)
 	conditions = weather["weather"][0]["description"]
 	shortconditions = weather["weather"][0]["main"]
 	temperature = str(convertK2F(weather["main"]["temp"]))
