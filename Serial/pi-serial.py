@@ -58,7 +58,8 @@ if __name__ == '__main__':
                 print(messageSent[1])
             time.sleep(5000)
         else:
-            response = decodeSerial(("weather".encode), credentials)
+        	line = "weather".encode()
+            response = decodeSerial((line), credentials)
             message = encodeSerial(response)
             messagesent = sendSerial(message, ser)
             if messageSent[0] == True:
