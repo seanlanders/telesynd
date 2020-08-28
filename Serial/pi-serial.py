@@ -40,6 +40,6 @@ if __name__ == '__main__':
 	        message = encodeSerial(response)
 	        messageSent = sendSerial(message)
 	       	if messageSent[0] == True:
-	       		pass
+	       		print(messageSent[0])
 	       	else:
 	    		print(messageSent[1])
