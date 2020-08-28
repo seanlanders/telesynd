@@ -2,6 +2,7 @@ import serial
 import serialweathertest as swt
 from findArduino import findArduino
 from credentials import credentials
+import time
 
 arduino = findArduino()
 ser = serial.Serial(str(arduino), 9600)
@@ -10,11 +11,12 @@ def prepWeather(credential):
 	weather = swt.weatherReport(credential)
 	weatherMsg = ""
 	for key in weather.keys():
-		weatherMsg = weatherMsg + str(weather[key])
+		weatherMsg = weatherMsg + ", " + str(weather[key])
 	return weatherMsg
 
 def decodeSerial(line, credential):
-	if b"weather" in line:
+	print("Received: ", line)
+	if b"1" in line:
 		weather = prepWeather(credential)
 		response = weather
 	else:
@@ -37,7 +39,7 @@ if __name__ == '__main__':
 	weather = swt.weatherReport(credentials)
 	print(weather.keys())
 
-	while 1: 
+	while 1:
 	    if(ser.in_waiting > 0):
 	        line = ser.readline()
 	        print(line)
@@ -48,3 +50,4 @@ if __name__ == '__main__':
 	        	print("Sent ",message)
 	        else:
 	        	print(messageSent[1])
+	        time.sleep(5000)
