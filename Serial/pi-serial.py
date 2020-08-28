@@ -2,6 +2,7 @@ import serial
 import serialweathertest as swt
 from findArduino import findArduino
 from credentials import credentials
+import time
 
 arduino = findArduino()
 ser = serial.Serial(str(arduino), 9600)
@@ -43,8 +44,9 @@ if __name__ == '__main__':
 	        print(line)
 	        response = decodeSerial(line, credentials)
 	        message = encodeSerial(response)
-	        messageSent = sendSerial(message, arduino)
+	        messageSent = sendSerial(message, ser)
 	        if messageSent[0] == True:
 	        	print("Sent ",message)
 	        else:
 	        	print(messageSent[1])
+	        time.sleep(5000)
