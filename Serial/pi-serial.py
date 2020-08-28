@@ -14,7 +14,7 @@ def prepWeather(credential):
 
 def decodeSerial(line, credential):
 	if b"weather" in line:
-		weather = prepareWeather(credential)
+		weather = prepWeather(credential)
 		response = weather
 	else:
 		print("Received: ", line)
