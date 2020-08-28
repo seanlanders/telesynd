@@ -8,6 +8,7 @@ ser = serial.Serial(str(arduino), 9600)
 
 def prepWeather(credential):
 	weather = swt.weatherReport(credential)
+	weatherMsg = ""
 	for key in weather.keys():
 		weatherMsg = weatherMsg + str(weather["key"])
 	return weatherMsg
