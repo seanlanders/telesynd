@@ -28,7 +28,7 @@ def decodeSerial(line, credential):
         response = "Waiting . . . "
     else:
         print("Received: ", line)
-        response = line
+        response = line.decode()
     return response
 
 def encodeSerial(response):
