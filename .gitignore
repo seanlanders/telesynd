@@ -1,0 +1,5 @@
+**/temp
+**/__pycache__
+**/icons
+**/credential*
+**/credentials.py
