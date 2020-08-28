@@ -7,28 +7,9 @@ import time
 arduino = findArduino()
 ser = serial.Serial(str(arduino), 9600)
 
-def prepWeather(credential):
-	weather = swt.weatherReport(credential)
-	weatherMsg = ""
-	for key in weather.keys():
-		if counter == 0:
-			weatherMsg = str(weather[key])
-			counter += 1
-		else:
-			weatherMsg = weatherMsg + ", " + str(weather[key])
-	weatherMsg = weatherMsg + "\0"
-	return weatherMsg
-
 def decodeSerial(line, credential):
 	print("Received: ", line)
-	if b"1" in line:
-		weather = prepWeather(credential)
-		response = weather
-	if b"2" in line:
-		response = "Waiting . . . "
-	else:
-		print("Received: ", line)
-		response = line
+	response = "Recieved"
 	return response
 
 def encodeSerial(response):
@@ -57,3 +38,4 @@ if __name__ == '__main__':
 	        else:
 	        	print(messageSent[1])
 	        time.sleep(5000)
+	     sendSerial("Hello world".encode(), ser)
