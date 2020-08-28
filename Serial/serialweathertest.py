@@ -57,7 +57,7 @@ def convertK2F(temperature):
 def weatherReport(credential):
 	ip = getIP()
 	locdata = getLocdata(ip, credentials)
-	location = locdata(['city']) + ","+locdata['region_name']
+	location = locdata['city'] + ","+locdata['region_name']
 	weather = getWeather(locdata['city'], credentials)
 	conditions = weather["weather"][0]["description"]
 	shortconditions = weather["weather"][0]["main"]
