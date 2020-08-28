@@ -11,11 +11,12 @@ def prepWeather(credential):
 	weather = swt.weatherReport(credential)
 	weatherMsg = ""
 	for key in weather.keys():
-		weatherMsg = weatherMsg + str(weather[key])
+		weatherMsg = weatherMsg + ", " + str(weather[key])
 	return weatherMsg
 
 def decodeSerial(line, credential):
-	if b"weather" in line:
+	print("Received: ", line)
+	if b"1" in line:
 		weather = prepWeather(credential)
 		response = weather
 	else:
