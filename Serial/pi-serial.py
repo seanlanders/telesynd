@@ -61,7 +61,7 @@ if __name__ == '__main__':
             line = "weather".encode()
             response = decodeSerial((line), credentials)
             message = encodeSerial(response)
-            messagesent = sendSerial(message, ser)
+            messageSent = sendSerial(message, ser)
             if messageSent[0] == True:
                 print("Sent ", message)
             else:
