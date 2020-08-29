@@ -13,10 +13,12 @@ def prepWeather(credentials):
     counter = 0
     for key in weather.keys():
         if counter == 0:
-            weatherMsg = key + ": " + str(weather[key])
+            weatherMsg = "\f" + key + ": " + str(weather[key])
+            print(weatherMsg)
             counter += 1
         else:
-            weatherMsg = weatherMsg + ", " + "\f" + key + ": " + str(weather[key])
+            weatherMsg = weatherMsg + ", " + "\0" + key + ": " + str(weather[key])
+            print(weatherMsg)
     weatherMsg = "\0" + weatherMsg + "\0"
     return weatherMsg
 
