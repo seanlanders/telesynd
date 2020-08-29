@@ -15,21 +15,20 @@ void setup(){
 }
 
 void loop(){
-  char* msg = "";
-  Serial.println(1);
+  int msg = 0;
   delay(1000);
-  if(Serial.available() > 0)
+  if(Serial.available())
   {
     while(Serial.available() > 0) {
-      msg += char(Serial.read()); 
+      msg = int(Serial.read()); 
+      TV.print(msg);
     }
-    int runfor = sizeof(msg);
-    for (int i = 0; i > runfor; i++) {
-      TV.println(msg[i]);
-      delay(100);
+//    for (int i = 0; i > runfor; i++) {
+//      TV.println(msg[i]);
+//      delay(1000);
     }
-    TV.println(msg);
-    Serial.println(2);
-    delay(2000);
+//    TV.println(msg);
+//    Serial.println(2);
+//    delay(2000);
   }
 }
