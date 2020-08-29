@@ -21,7 +21,6 @@ void loop() {
   if (Serial.available() > 0 ) {
     ByteReceived = Serial.read();
     tv.print(ByteReceived);
-    tv.println("");
     if (ByteReceived == '\0') 
     {
        tv.println("");
