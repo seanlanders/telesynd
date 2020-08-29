@@ -47,11 +47,13 @@ if __name__ == '__main__':
     print("Sent hello world " + str(counter))
     time.sleep(5)
     while 1:
-        weatherMsg = prepWeather(credentials)
-        print(weatherMsg)
+        #weatherMsg = prepWeather(credentials)
+        #print(weatherMsg)
         #message = encodeSerial(weatherMsg)
         #messageSent = sendSerial(message, ser)
         message = ("Hello world " + str(counter)).encode()
+        print(message)
+        print(message.decode)
         messageSent = sendSerial(message, ser)
         if messageSent[0] == True:
             print("Sent ", message)
