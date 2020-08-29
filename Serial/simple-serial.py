@@ -13,11 +13,11 @@ def prepWeather(credentials):
     counter = 0
     for key in weather.keys():
         if counter == 0:
-            weatherMsg = str(weather[key])
+            weatherMsg = key + ": " + str(weather[key])
             counter += 1
         else:
-            weatherMsg = weatherMsg + ", " + str(weather[key])
-    weatherMsg = "\f" + weatherMsg + "\0"
+            weatherMsg = weatherMsg + ", " + "\f" + key + ": " + str(weather[key])
+    weatherMsg = "\0" + weatherMsg + "\0"
     return weatherMsg
 
 def decodeSerial(line, credential):
@@ -45,8 +45,8 @@ if __name__ == '__main__':
     time.sleep(5)
     while 1:
         weatherMsg = prepWeather(credentials)
-        message = encodeSerial(weatherMsg)
-        messageSent = sendSerial(message, ser)
+        #message = encodeSerial(weatherMsg)
+        messageSent = sendSerial(weatherMsg, ser)
         if messageSent[0] == True:
             print("Sent ", message)
         else:
