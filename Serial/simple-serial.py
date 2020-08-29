@@ -51,7 +51,7 @@ if __name__ == '__main__':
         #print(weatherMsg)
         #message = encodeSerial(weatherMsg)
         #messageSent = sendSerial(message, ser)
-        message = ("Hello world " + str(counter)).encode()
+        message = ("Hello world " + str(counter) + "\0").encode()
         print(message)
         print(message.decode)
         messageSent = sendSerial(message, ser)
@@ -59,4 +59,5 @@ if __name__ == '__main__':
             print("Sent ", message)
         else:
             print(messageSent[1])
+        counter += 1
         time.sleep(10)
