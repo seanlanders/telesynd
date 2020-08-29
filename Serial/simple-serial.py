@@ -47,7 +47,7 @@ if __name__ == '__main__':
         weatherMsg = prepWeather(credentials)
         print(weatherMsg)
         message = encodeSerial(weatherMsg)
-        messageSent = sendSerial(weatherMsg, ser)
+        messageSent = sendSerial(message, ser)
         if messageSent[0] == True:
             print("Sent ", message)
         else:
