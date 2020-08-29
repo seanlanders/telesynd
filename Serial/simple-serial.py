@@ -39,10 +39,10 @@ def sendSerial(message, serialobj):
 if __name__ == '__main__':
 #   weather = swt.weatherReport(credentials)
 #   print(weather.keys())
-    time.sleep(25)
+    time.sleep(5)
     sendSerial("Hello world".encode(), ser)
     print("Sent hello world")
-    time.sleep(60)
+    time.sleep(5)
     while 1:
         weatherMsg = prepWeather(credentials)
         message = encodeSerial(weatherMsg)
