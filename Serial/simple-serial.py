@@ -42,13 +42,16 @@ if __name__ == '__main__':
 #   weather = swt.weatherReport(credentials)
 #   print(weather.keys())
     time.sleep(5)
+    counter = 0
     sendSerial("Hello world".encode(), ser)
-    print("Sent hello world")
+    print("Sent hello world " + str(counter))
     time.sleep(5)
     while 1:
         weatherMsg = prepWeather(credentials)
         print(weatherMsg)
-        message = encodeSerial(weatherMsg)
+        #message = encodeSerial(weatherMsg)
+        #messageSent = sendSerial(message, ser)
+        message = ("Hello world " + str(counter)).encode()
         messageSent = sendSerial(message, ser)
         if messageSent[0] == True:
             print("Sent ", message)
