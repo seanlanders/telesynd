@@ -45,6 +45,7 @@ if __name__ == '__main__':
     time.sleep(5)
     while 1:
         weatherMsg = prepWeather(credentials)
+        print(weatherMsg)
         #message = encodeSerial(weatherMsg)
         messageSent = sendSerial(weatherMsg, ser)
         if messageSent[0] == True:
