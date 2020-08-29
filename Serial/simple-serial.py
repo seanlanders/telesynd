@@ -43,7 +43,7 @@ if __name__ == '__main__':
     sendSerial("Hello world".encode(), ser)
     time.sleep(60)
     while 1:
-"""
+    """
         if(ser.in_waiting > 0):
             line = ser.readline()
             print(line)
@@ -55,7 +55,7 @@ if __name__ == '__main__':
             else:
                 print(messageSent[1])
             time.sleep(5000)
-"""
+    """
         weatherMsg = prepWeather(credentials)
         message = encodeSerial(weatherMsg)
         messageSent = sendSerial(message, ser)
