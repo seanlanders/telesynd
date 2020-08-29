@@ -53,7 +53,7 @@ if __name__ == '__main__':
         #messageSent = sendSerial(message, ser)
         message = ("Hello world " + str(counter)).encode()
         print(message)
-        print(message.decode)
+        print(message.decode())
         messageSent = sendSerial(message, ser)
         if messageSent[0] == True:
             print("Sent ", message)
