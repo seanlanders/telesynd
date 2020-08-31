@@ -3,8 +3,14 @@
 
 int W = 120;
 int H = 96;
+bool printedLine = 0;
+bool firstLineReceived = 0;
+char ByteReceived;
+int result = 0;
+char num = "1234";
+int len = 1000;
 
-int ByteReceived;
+
 TVout tv;
 
 void setup() {
@@ -18,18 +24,45 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if (Serial.available() > 0 ) {
-    ByteReceived = Serial.read();
-    tv.print(ByteReceived);
-    if (ByteReceived == '\0') 
+  int i = 0;
+  int t = 0;
+  for (i=0;i<len; i++)
+  {
+    for (t = 0; t < 10; t ++)
+    {
+    i++;
+    tv.print(i);
+    delay(100);
+    }
+    tv.println(i);
+  }
+  delay(500);
+
+  /* int i;
+  while (Serial.available() > 0 ) {
+    firstLineReceived = 1;
+    ByteReceived += Serial.read();
+  }
+  if (Serial.available() == 0 && firstLineReceived == 1); {
+    printedLine = 1;
+  }
+  if (printedLine == 1); {
+    tv.println("test");
+    printedLine = 0;
+    firstLineReceived = 0;
+  } */
+/*  for (i = 0; i <= sizeof(ByteReceived); i++) {
+    if (ByteReceived[i] == '\0') 
     {
        tv.println("");
     }
-    else if (ByteReceived == '\f') {
+    else if (ByteReceived[i] == '\f') {
       tv.clear_screen();
     }
-    else {
-      tv.print(ByteReceived);
+    else if (ByteReceived[i] == ', ') { 
     }
-  }
+    else {
+      tv.print(ByteReceived[i]);
+    }
+  } */
 }
