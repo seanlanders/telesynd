@@ -13,8 +13,9 @@ Date: July 5, 2020
 int W = 120;
 int H = 96;
 
-char message[];
+char message[128];
 
+TVout tv;
 
 void setup(){
   // Set the baud rate  
@@ -26,12 +27,12 @@ void setup(){
 }
  
 void loop(){
-	char message[];
+	char message[128];
 	if(Serial.available() > 0) {
 		String data = Serial.readStringUntil('\n');
-		data.toCharArray(message, 128)
+		data.toCharArray(message, 128);
 		tv.println("Hi Raspberry Pi! You sent me: ");
 		tv.println(message);
-  	delay(1500)
+  	delay(1500);
   }
 }
