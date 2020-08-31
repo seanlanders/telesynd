@@ -5,7 +5,7 @@ from credentials import credentials
 import time
 
 arduino = findArduino()
-ser = serial.Serial(str(arduino), 9600)
+ser = serial.Serial(str(arduino), 115200)
 ser.flush()
 
 def prepWeather(credentials):
@@ -53,8 +53,8 @@ if __name__ == '__main__':
         #print(weatherMsg)
         #message = encodeSerial(weatherMsg)
         #messageSent = sendSerial(message, ser)
-        #message = ("Hello world " + str(counter) + ("\n")).encode('utf-8')
-        message = b'1'
+        message = ("Hello world " + (str(counter).zfill(3)) + ("\0")).encode('utf-8')
+        #message = b'1'
         print(message)
         print(message.decode())
         messageSent = sendSerial(message, ser)
