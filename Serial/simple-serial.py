@@ -53,7 +53,8 @@ if __name__ == '__main__':
         #print(weatherMsg)
         #message = encodeSerial(weatherMsg)
         #messageSent = sendSerial(message, ser)
-        message = ("Hello world " + str(counter) + ("\n")).encode('utf-8')
+        #message = ("Hello world " + str(counter) + ("\n")).encode('utf-8')
+        message = b'1'
         print(message)
         print(message.decode())
         messageSent = sendSerial(message, ser)
