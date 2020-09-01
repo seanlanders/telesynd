@@ -28,11 +28,11 @@ def decodeSerial(line, credential):
         response = weather
     elif b"2" in line:
         response = "Waiting . . . "
-    elif b"weather" in line:
+    elif "weather" in line.decode():
         weather = prepWeather("temperature", credential)
     else:
         print("Received: ", line)
-        response = prepWeather(credential)
+#        response = prepWeather("temperature", credential)
     return response
 
 def encodeSerial(response):
