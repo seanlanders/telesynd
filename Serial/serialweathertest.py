@@ -59,7 +59,7 @@ def weatherReport(fields, credential):
 	locdata = getLocdata(ip, credentials)
 	location = locdata['city'] + ","+locdata['region_name']
 	weather = getWeather(locdata['city'], credentials)
-	if fields == "all":
+	if "all" in fields:
 		conditions = weather["weather"][0]["description"]
 		shortconditions = weather["weather"][0]["main"]
 		temperature = str(convertK2F(weather["main"]["temp"]))

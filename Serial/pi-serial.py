@@ -9,7 +9,7 @@ ser = serial.Serial(str(arduino), 9600)
 
 def prepWeather(fields, credential):
     weather = swt.weatherReport((fields), credential)
-    print(weather)
+    print(weather["temp"])
     weatherMsg = ""
     counter = 0
     for key in weather.keys():
@@ -54,7 +54,7 @@ def sendSerial(message, serialobj):
 if __name__ == '__main__':
     weather = swt.weatherReport(("temperature"), credentials)
     print(weather.keys())
-    print(weather["temperature"])
+    print(weather["temp"])
     while 1:
         if(ser.in_waiting > 0):
             line = ser.readline()
