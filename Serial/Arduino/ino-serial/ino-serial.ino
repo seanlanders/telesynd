@@ -7,7 +7,6 @@ int H = 96;
 const byte numChars = 32;
 char receivedChars[numChars];
 boolean newData = false;
-int temp = 
 
 
 TVout tv;
@@ -16,7 +15,7 @@ struct Weather {
     char temp;
     char feels;
     char humid;
-}
+};
 
 void setup() {
     tv.begin(NTSC, W, H);
@@ -31,10 +30,7 @@ void loop() {
     showNewData();
 }
 
-void parseWeatherData();{
-    //sscanf(receivedChars, "<%d,%d,%d>", &Weather.temp, &Weather.feels, &Weather.humid)
-    sscanf(receivedChars, "<%d>", &Weather.temp)
-}
+
 
 void recvWithStartEndMarkers() {
     static boolean recvInProgress = false;
@@ -69,12 +65,16 @@ void recvWithStartEndMarkers() {
     }
 }
 
+void parseWeatherData() {
+    //sscanf(receivedChars, "<%d,%d,%d>", &Weather.temp, &Weather.feels, &Weather.humid)
+    //sscanf(receivedChars, "<%d>", &Weather.temp)
+}
+
 void showNewData() {
     if (newData == true) {
-        tv.clear_screen;
+        tv.clear_screen();
         tv.print("This just in ... ");
         tv.println(receivedChars);
-        tv.println(Weather.temp)
         newData = false;
     }
 }
