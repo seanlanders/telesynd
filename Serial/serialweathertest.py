@@ -65,23 +65,23 @@ def weatherReport(fields, credential):
 		temperature = str(convertK2F(weather["main"]["temp"]))
 		feelslike = str(convertK2F(weather["main"]["feels_like"]))
 		humidity = str(weather["main"]["humidity"])
-		results = {"temp": temperature, "feels": feelslike, "humidity": humidity, "longCond": conditions, "shortCond": shortconditions} 
+		results = {"temp": temperature, "feels": feelslike, "humid": humidity, "longCond": conditions, "shortCond": shortconditions} 
 	else:
 		results = {}
 		for x in range(len(fields)):
 			if fields[x] == "conditions":
 				conditions = weather["weather"][0]["description"]
 				shortconditions = weather["weather"][0]["main"]
-				results["conditions"] = conditions
-				results["shortconditions"] = shortconditions
+				results["longCond"] = conditions
+				results["shortCond"] = shortconditions
 			elif fields[x] == "temperature":
 				temperature = str(convertK2F(weather["main"]["temp"]))
 				feelslike = str(convertK2F(weather["main"]["feels_like"]))
-				results["temperature"] = temperature
-				results["feelslike"] = feelslike
+				results["temp"] = temperature
+				results["feels"] = feelslike
 			elif fields[x] == "humidity":
 				humidity = str(weather["main"]["humidity"])
-				results["humdity"] = humidity
+				results["humd"] = humidity
 			else:
 				print("ERROR-- only returning temp")
 				temperature = str(convertK2F(weather["main"]["temp"]))
@@ -123,6 +123,7 @@ if __name__ == '__main__':
 
 	weather = weatherReport(("temperature", "humidity"), credentials)
 	print("\n\n", weather)
+	print(weather["temp"])
 	weather = weatherReport(("all"), credentials)
 	print("\n\n", weather)
 	"""
