@@ -33,7 +33,7 @@ def decodeSerial(line, credential):
     return response
 
 def encodeSerial(response):
-    message = response.encode()
+    message = response.encode('utf-8')
     return message
 
 def sendSerial(message, serialobj):
@@ -57,7 +57,12 @@ if __name__ == '__main__':
                 print("Sent ",message)
             else:
                 print(messageSent[1])
-            time.sleep(5000)
+            time.sleep(60)
+        
+
+
+"""
+# debug purposes only - may not work at all
         else:
             line = "weather".encode()
             response = decodeSerial((line), credentials)
@@ -68,3 +73,4 @@ if __name__ == '__main__':
             else:
                 print(messageSent[1])
             time.sleep(5)
+"""
