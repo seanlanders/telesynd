@@ -20,7 +20,7 @@ struct Weather {
 void setup() {
     tv.begin(NTSC, W, H);
     tv.select_font(font4x6);  
-    Serial.begin(9600);
+    Serial.begin(57600);
     tv.println("<Arduino is ready>");
 }
 
@@ -68,6 +68,7 @@ void recvWithStartEndMarkers() {
 void parseWeatherData() {
     //sscanf(receivedChars, "<%d,%d,%d>", &Weather.temp, &Weather.feels, &Weather.humid)
     //sscanf(receivedChars, "<%d>", &Weather.temp)
+    char * parsedChars = receivedChars;
 }
 
 void showNewData() {
