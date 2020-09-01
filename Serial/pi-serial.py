@@ -33,7 +33,7 @@ def decodeSerial(line, credential):
         response = prepWeather(("temperature"), credential)
     else:
         print("Received: ", line)
-        response = 0
+        response = "NOPE"
     return response
 
 def encodeSerial(response):
