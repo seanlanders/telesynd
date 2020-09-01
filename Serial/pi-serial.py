@@ -31,6 +31,7 @@ def decodeSerial(line, credential):
         response = "Waiting . . . "
     elif b"weather" in line:
         response = prepWeather(("temperature"), credential)
+        print("WEATHER!")
     else:
         print("Received: ", line)
         response = "NOPE"
