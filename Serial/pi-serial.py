@@ -5,7 +5,7 @@ from credentials import credentials
 import time
 
 arduino = findArduino()
-ser = serial.Serial(str(arduino), 9600)
+ser = serial.Serial(str(arduino), 57600)
 
 def prepWeather(fields, credential):
     weather = swt.weatherReport((fields), credential)
