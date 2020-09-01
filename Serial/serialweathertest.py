@@ -82,6 +82,7 @@ def weatherReport(fields, credential):
 			elif fields[x] == "humidity":
 				humidity = str(weather["main"]["humidity"])
 				results["humdity"] = humidity
+	print("Weather Report: ",results)
 	return results
 
 if __name__ == '__main__':
