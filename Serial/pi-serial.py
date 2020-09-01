@@ -64,7 +64,7 @@ if __name__ == '__main__':
         # debug purposes only - may not work at all
         else:
             line = "weather".encode()
-            response = decodeSerial((line), credentials)
+            response = decodeSerial(line, credentials)
             print(response)
             message = encodeSerial(response)
             print(message)
