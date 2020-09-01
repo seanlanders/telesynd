@@ -50,8 +50,8 @@ def sendSerial(message, serialobj):
         return (False, instance)
 
 if __name__ == '__main__':
-#    weather = swt.weatherReport(credentials)
-#    print(weather.keys())
+    weather = swt.weatherReport(("all"), credentials)
+    print(weather.keys())
     while 1:
         if(ser.in_waiting > 0):
             line = ser.readline()
