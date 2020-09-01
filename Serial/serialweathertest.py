@@ -54,17 +54,34 @@ def convertK2F(temperature):
 	temp = pytemperature.k2f(temperature)
 	return temp
 
-def weatherReport(credential):
+def weatherReport(fields, credential):
 	ip = getIP()
 	locdata = getLocdata(ip, credentials)
 	location = locdata['city'] + ","+locdata['region_name']
 	weather = getWeather(locdata['city'], credentials)
-	conditions = weather["weather"][0]["description"]
-	shortconditions = weather["weather"][0]["main"]
-	temperature = str(convertK2F(weather["main"]["temp"]))
-	feelslike = str(convertK2F(weather["main"]["feels_like"]))
-	humidity = str(weather["main"]["humidity"])
-	results = {"temp": temperature, "feels": feelslike, "humidity": humidity, "longCond": conditions, "shortCond": shortconditions} 
+	if fields == "all":
+		conditions = weather["weather"][0]["description"]
+		shortconditions = weather["weather"][0]["main"]
+		temperature = str(convertK2F(weather["main"]["temp"]))
+		feelslike = str(convertK2F(weather["main"]["feels_like"]))
+		humidity = str(weather["main"]["humidity"])
+		results = {"temp": temperature, "feels": feelslike, "humidity": humidity, "longCond": conditions, "shortCond": shortconditions} 
+	else:
+		results = {}
+		for x in range(len(fields)):
+			if fields[x] == "conditions":
+				conditions = weather["weather"][0]["description"]
+				shortconditions = weather["weather"][0]["main"]
+				results["conditions"] = conditions
+				results["shortconditions"] = shortconditions
+			elif fields[x] == "temperature":
+				temperature = str(convertK2F(weather["main"]["temp"]))
+				feelslike = str(convertK2F(weather["main"]["feels_like"]))
+				results["temperature"] = temperature
+				results["feelslike"] = feelslike
+			elif fields[x] == "humidity":
+				humidity = str(weather["main"]["humidity"])
+				results["humdity"] = humidity
 	return results
 
 if __name__ == '__main__':
@@ -72,7 +89,7 @@ if __name__ == '__main__':
 
 	ip = getIP()
 	print(ip)
-	locdata=getlocdata(ip)
+	locdata=getLocdata(ip, credentials)
 
 	print(len(locdata))
 
@@ -82,7 +99,7 @@ if __name__ == '__main__':
 
 	location = locdata['city'] + ","+locdata['region_name']
 
-	weather = getweather(locdata['city'])
+	weather = getWeather(locdata['city'], credentials)
 	print(weather.keys())
 	for key in weather.keys():
 		print(key + ": " + str(weather[key]))
@@ -97,6 +114,11 @@ if __name__ == '__main__':
 	print("Temperature: " + str(convertK2F(weather["main"]["temp"])) + "F, (feels like " + str(convertK2F(weather["main"]["feels_like"])) + "F)")
 	print("Humidity: " + str(weather["main"]["humidity"]) + "%")
 
+
+	weather = weatherReport(("temperature", "humidity"), credentials)
+	print("\n\n", weather)
+	weather = weatherReport(("all"), credentials)
+	print("\n\n", weather)
 	"""
 	from geolocation.main import GoogleMaps 
 	from geolocation.distance_matrix.client import DistanceMatrixApiClient

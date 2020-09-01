@@ -7,23 +7,24 @@ import time
 arduino = findArduino()
 ser = serial.Serial(str(arduino), 9600)
 
-def prepWeather(credential):
-    weather = swt.weatherReport(credential)
+def prepWeather(fields, credential):
+    weather = swt.weatherReport(fields, credential)
     weatherMsg = ""
     counter = 0
     for key in weather.keys():
+        print(key,)
         if counter == 0:
             weatherMsg = str(weather[key])
             counter += 1
         else:
             weatherMsg = weatherMsg + ", " + str(weather[key])
-    weatherMsg = weatherMsg + "\0"
+    weatherMsg = "<" + weatherMsg + ">"
     return weatherMsg
 
 def decodeSerial(line, credential):
     print("Received: ", line)
     if b"1" in line:
-        weather = prepWeather(credential)
+        weather = prepWeather(("temperature", "humidity"), credential)
         response = weather
     if b"2" in line:
         response = "Waiting . . . "
@@ -58,19 +59,16 @@ if __name__ == '__main__':
             else:
                 print(messageSent[1])
             time.sleep(60)
-        
-
-
-"""
-# debug purposes only - may not work at all
+        # debug purposes only - may not work at all
         else:
-            line = "weather".encode()
+            line = "1".encode()
             response = decodeSerial((line), credentials)
+            print(response)
             message = encodeSerial(response)
+            print(message)
             messageSent = sendSerial(message, ser)
             if messageSent[0] == True:
                 print("Sent ", message)
             else:
                 print(messageSent[1])
             time.sleep(5)
-"""
