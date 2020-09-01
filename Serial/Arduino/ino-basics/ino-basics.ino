@@ -15,9 +15,10 @@ int H = 96;
 
 char message[128];
 
-static char buffer[MAX_MESSAGE];
+char buffer[MAX_MESSAGE];
 static unsigned char index = 0;
 char data;
+bool linePrinted = 1;
 
 TVout tv;
 
@@ -34,12 +35,16 @@ void loop(){
 	while (Serial.available() > 0) {
 		data = Serial.read();
     buffer[index++] = data;
+    
 	}
- if (Serial.available() == 0 && strlen(buffer) > 1) {
+ linePrinted = 0;
+ if (Serial.available() == 0 && linePrinted == 0) {
   tv.println(buffer);
-  static char buffer[MAX_MESSAGE];
+  char buffer[MAX_MESSAGE];
   static unsigned char index = 0;
   char data;
+  linePrinted = 1;
   //memset(buffer, 0, MAX_MESSAGE);
+  //memset(data, 0, 2);
  }
 }
