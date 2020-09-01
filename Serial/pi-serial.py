@@ -54,7 +54,8 @@ def sendSerial(message, serialobj):
 if __name__ == '__main__':
     weather = swt.weatherReport(("temperature"), credentials)
     print(weather.keys())
-    print(weather["temp"])
+    print(weather[0])
+    print(weather["temperature"])
     while 1:
         if(ser.in_waiting > 0):
             line = ser.readline()
