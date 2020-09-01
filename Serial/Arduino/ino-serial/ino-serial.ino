@@ -32,7 +32,8 @@ void loop() {
 }
 
 void parseWeatherData();{
-    sscanf(receivedChars, "<%d,%d,%d>", &Weather.temp, &Weather.feels, &Weather.humid)
+    //sscanf(receivedChars, "<%d,%d,%d>", &Weather.temp, &Weather.feels, &Weather.humid)
+    sscanf(receivedChars, "<%d>", &Weather.temp)
 }
 
 void recvWithStartEndMarkers() {
@@ -70,10 +71,10 @@ void recvWithStartEndMarkers() {
 
 void showNewData() {
     if (newData == true) {
+        tv.clear_screen;
         tv.print("This just in ... ");
         tv.println(receivedChars);
-        tv.print(Weather.temp, Weather.feels, Weather.humid)
-        tv.clear_screen;
+        tv.println(Weather.temp)
         newData = false;
     }
 }

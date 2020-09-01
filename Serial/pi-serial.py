@@ -26,8 +26,12 @@ def decodeSerial(line, credential):
     if b"1" in line:
         weather = prepWeather(("temperature", "humidity"), credential)
         response = weather
-    if b"2" in line:
+    elif b"2" in line:
         response = "Waiting . . . "
+    elif b"weather" in line:
+        weather = prepWeather("temperature", credential)
+        response = weather["temperature"]
+        print(response)
     else:
         print("Received: ", line)
         response = prepWeather(credential)
@@ -61,7 +65,7 @@ if __name__ == '__main__':
             time.sleep(60)
         # debug purposes only - may not work at all
         else:
-            line = "1".encode()
+            line = "weather".encode()
             response = decodeSerial((line), credentials)
             print(response)
             message = encodeSerial(response)
