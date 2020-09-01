@@ -9,6 +9,7 @@ ser = serial.Serial(str(arduino), 9600)
 
 def prepWeather(fields, credential):
     weather = swt.weatherReport(fields, credential)
+    print(weather)
     weatherMsg = ""
     counter = 0
     for key in weather.keys():
