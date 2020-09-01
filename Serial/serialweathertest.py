@@ -69,6 +69,7 @@ def weatherReport(fields, credential):
 	else:
 		results = {}
 		for x in range(len(fields)):
+			print(fields[x])
 			if fields[x] == "conditions":
 				conditions = weather["weather"][0]["description"]
 				shortconditions = weather["weather"][0]["main"]
