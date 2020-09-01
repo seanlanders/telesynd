@@ -82,6 +82,11 @@ def weatherReport(fields, credential):
 			elif fields[x] == "humidity":
 				humidity = str(weather["main"]["humidity"])
 				results["humdity"] = humidity
+			else:
+				print("ERROR-- only returning temp")
+				temperature = str(convertK2F(weather["main"]["temp"]))
+				results["temperature"] = temperature
+				print(results["temperature"])
 	print("Weather Report: ",results)
 	return results
 
