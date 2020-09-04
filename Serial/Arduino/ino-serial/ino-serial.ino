@@ -1,16 +1,24 @@
 #include <TVout.h>
 #include <fontALL.h>
 
+// sets TV resolution
 int W = 120;
 int H = 96;
 
+//flags for serial communication
+char startMarker = '<';
+char endMarker = '>';
+
+// flags for TVout display of serial communication
 const byte numChars = 32;
 char receivedChars[numChars];
 boolean newData = false;
 
 
+
 TVout tv;
 
+// no idea what I'm doing here
 struct Weather {
     char temp;
     char feels;
@@ -31,12 +39,11 @@ void loop() {
 }
 
 
-
+//serial communication
 void recvWithStartEndMarkers() {
+    //necessary flags to initialize serial comm 
     static boolean recvInProgress = false;
     static byte ndx = 0;
-    char startMarker = '<';
-    char endMarker = '>';
     char rc;
  
  // if (Serial.available() > 0) {
@@ -65,12 +72,18 @@ void recvWithStartEndMarkers() {
     }
 }
 
+// NEED to figure out struct
+// when I do
+// this will break the input into three functions
+// and format it into the struct
+// for ease of display
 void parseWeatherData() {
     //sscanf(receivedChars, "<%d,%d,%d>", &Weather.temp, &Weather.feels, &Weather.humid)
     //sscanf(receivedChars, "<%d>", &Weather.temp)
     char * parsedChars = receivedChars;
 }
 
+// display incoming data on TV
 void showNewData() {
     if (newData == true) {
         tv.clear_screen();
