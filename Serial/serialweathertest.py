@@ -21,15 +21,19 @@ try:
 except:
 	print("Already had dir " + iconDir)
 
+# just in case API changes
+# consider externalizing + importing
 API={}
 API["openweather"] = "http://api.openweathermap.org/data/2.5/weather?"
 API["ipify"] = 'https://api.ipify.org/'
 API["ipstack"] = 'http://api.ipstack.com/'
 
+# get user's external IP
 def getIP():
 	ip = get(API["ipify"]).text
 	return ip
 
+#using user's IP, get best guess of user's location 
 def getLocdata(IP, credential):
 	locdataRequest = API["ipstack"]+IP+"?access_key=" + credential["ipstack"]
 	print(locdataRequest)
@@ -37,12 +41,15 @@ def getLocdata(IP, credential):
 	locdata = json.loads(locdata)
 	return locdata
 
+# using best guess of user's location, get prevailing weather conditions from openweather 
 def getWeather(loc, credential):
 	requestURL = API["openweather"] + "appid=" + credential["openweather"] + "&q=" + loc
 	response = get(requestURL).text
 	weather = json.loads(response)
 	return weather
 
+# to download the current Weather Icon
+# TODO: convert icon to 1-bit BMP, and communicate to Arduino (serially?)
 def downloadWeatherIcon(url, condition, dir):
 	image_url = url
 	save_name = dir + "//" + condition + ".png"
@@ -50,10 +57,14 @@ def downloadWeatherIcon(url, condition, dir):
 	print("Downloaded %s, saved as %s" % (image_url, save_name))
 	return save_name
 
+# right now, openweather replies back in Kelvin
+# this function translates to F
 def convertK2F(temperature):
 	temp = pytemperature.k2f(temperature)
 	return temp
 
+# how we get the weather
+# if/else tree really needs some finessing
 def weatherReport(fields, credential):
 	ip = getIP()
 	locdata = getLocdata(ip, credentials)
@@ -91,8 +102,8 @@ def weatherReport(fields, credential):
 	print("Weather Report: ",results)
 	return results
 
+# used for debugging / example
 if __name__ == '__main__':
-
 
 	ip = getIP()
 	print(ip)
@@ -111,7 +122,6 @@ if __name__ == '__main__':
 	for key in weather.keys():
 		print(key + ": " + str(weather[key]))
 
-
 	#weatherIcon = downloadWeatherIcon(weather["weather"]["icon"], weather["weather"]["main"], iconDir)
 	#print(weatherIcon)
 
@@ -120,7 +130,6 @@ if __name__ == '__main__':
 	print("Conditions: " + str(weather["weather"][0]["description"]))
 	print("Temperature: " + str(convertK2F(weather["main"]["temp"])) + "F, (feels like " + str(convertK2F(weather["main"]["feels_like"])) + "F)")
 	print("Humidity: " + str(weather["main"]["humidity"]) + "%")
-
 
 	weather = weatherReport(("temperature", "humidity"), credentials)
 	print("\n\n", weather)
@@ -131,7 +140,8 @@ if __name__ == '__main__':
 	from geolocation.main import GoogleMaps 
 	from geolocation.distance_matrix.client import DistanceMatrixApiClient
 
-	key = "AIzaSyDW49kSJkSbUMIp0OVs7A8nNrE57iAecog"
+	# insert your own API credentials
+	key = credentials["google"]
 
 	google_maps = GoogleMaps(api_key=key)
 	location = google_maps.search(location="address")

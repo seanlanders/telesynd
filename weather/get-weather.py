@@ -2,12 +2,7 @@ from requests import get
 import json
 import os
 import pytemperature
-#import credentials
-
-credential={}
-credential["ipstack"] = "eceecc221d797c7bf1bdcd5e88620b18"
-credential["google"] = "AIzaSyDW49kSJkSbUMIp0OVs7A8nNrE57iAecog"
-credential["openweather"] = "baf0881ce5988158e91e9aaa0a262432"
+import credentials as credential
 
 iconDir = os.getcwd() + "//icons"
 
@@ -82,7 +77,7 @@ print("Humidity: " + str(weather["main"]["humidity"]) + "%")
 from geolocation.main import GoogleMaps 
 from geolocation.distance_matrix.client import DistanceMatrixApiClient
 
-key = "AIzaSyDW49kSJkSbUMIp0OVs7A8nNrE57iAecog"
+key = credential["google"]
 
 google_maps = GoogleMaps(api_key=key)
 location = google_maps.search(location="address")

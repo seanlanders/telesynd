@@ -1,7 +1,7 @@
 from geolocation.main import GoogleMaps 
 from geolocation.distance_matrix.client import DistanceMatrixApiClient
 
-key = "AIzaSyDW49kSJkSbUMIp0OVs7A8nNrE57iAecog"
+key = <INSERT YOUR KEY HERE>
 
 google_maps = GoogleMaps(api_key=key)
 location = google_maps.search(location="address")
