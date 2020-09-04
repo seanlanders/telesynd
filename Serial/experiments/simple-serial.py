@@ -1,15 +1,18 @@
 import serial
+#'serialweathertest' clearly a placeholder name - why not rename?
 import serialweathertest as swt
 from findArduino import findArduino
 from credentials import credentials
 import time
 
+# initialize serial object
+# TO DO - might be good to store baud in external file, referenced by Arduino + Pi?
 baud = 57600
-
 arduino = findArduino()
 ser = serial.Serial(str(arduino), baud)
 ser.flush()
 
+# uses prepWeather to 
 def prepWeather(credentials):
     weather = swt.weatherReport(credentials)
     weatherMsg = ""
@@ -24,6 +27,9 @@ def prepWeather(credentials):
             print(weatherMsg)
     weatherMsg = "\0" + weatherMsg + "\0"
     return weatherMsg
+
+#next 3 functions: 
+#simplifying serial comm
 
 def decodeSerial(line, credential):
     print("Received: ", line)
