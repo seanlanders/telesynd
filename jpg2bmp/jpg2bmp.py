@@ -40,3 +40,12 @@ print(type(inoBits))
 with open("AlanTuring.cpp", "wb") as binary_file:
 	binary_file.write(inoBits)
 	binary_file.close()
+
+i = Image.open("mode1.bmp")
+
+inoBits = i.convert(mode="1")
+inoBits = inoBits.tobitmap("AlanTuring")
+
+with open("mode1.cpp", "wb") as binary_file:
+	binary_file.write(inoBits)
+	binary_file.close()
