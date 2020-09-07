@@ -3,7 +3,7 @@
 #include "pirlInv.h"
 #include "AlanTuring.h"
 #include "AlanKay.h"
-#include "Magneto.h"
+#include "mode1.h"
 
 TVout TV;
 int titleDelay = 500;
@@ -11,7 +11,7 @@ int titleDelay = 500;
 void setup() {
   // put your setup code here, to run once:
 TV.begin(NTSC, 128, 96);
-TV.bitmap(0,20,kay);
+TV.bitmap(0,0,kay);
 delay(2500);
 TV.clear_screen();
 TV.select_font(font8x8);
@@ -30,7 +30,7 @@ TV.println("Welcome to ");
 TV.bitmap(0, 20, pirl);
 delay(2500);
 TV.clear_screen();
-TV.bitmap(20,0,AlanTuring);
+TV.bitmap(0,0,mode1);
 }
 
 void loop() {
