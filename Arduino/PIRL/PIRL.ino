@@ -30,7 +30,7 @@ TV.println("Welcome to ");
 TV.bitmap(0, 20, pirl);
 delay(2500);
 TV.clear_screen();
-TV.bitmap(0,0,mode1);
+TV.bitmap(0,0,AlanTuring);
 }
 
 void loop() {
