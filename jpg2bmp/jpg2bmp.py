@@ -26,7 +26,8 @@ for file in bmpFiles:
 	im.save((prefix+".bmp"))
 
 	inverted_image.save((prefix + "inverted-.bmp"))
-	im2 = Image.fromarray(bitmap.astype(np.uint8), mode="L").convert("1")
+
+	im2 = Image.fromarray(bitmap.astype(np.uint8)).convert("1")
 	im2.thumbnail((128,96))
 	inoBits = im2.tobitmap(prefix)
 	im2.save((prefix+"-resized.bmp"))
