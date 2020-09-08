@@ -30,8 +30,13 @@ for file in bmpFiles:
 	im2 = Image.fromarray(bitmap.astype(np.uint8)).convert("1")
 	im2.thumbnail((128,96))
 	inoBits = im2.tobitmap(prefix)
-	im2.save((prefix+"-resized.bmp"))
+	im2.save((prefix+"-resized.bmp"),bits=1, optimize=True)
 	with open((prefix+".cpp"), "wb") as binary_file:
+		binary_file.write(inoBits)
+		binary_file.close()
+	im3 = Image.open((prefix+"-resized.bmp"))
+	inoBits = im3.tobitmap((prefix))
+	with open((prefix+"-test.cpp"), "wb") as binary_file:
 		binary_file.write(inoBits)
 		binary_file.close()
 """
