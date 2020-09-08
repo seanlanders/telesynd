@@ -1,5 +1,6 @@
 from PIL import Image, ImageOps
 import numpy as np
+import glob
 
 img = Image.open('AlanTuring.jpg')
 ary = np.array(img)
@@ -21,13 +22,21 @@ inverted_image = ImageOps.invert(im)
 im.save('AlanTuring.bmp')
 inverted_image.save('AlanTuring-inverted.bmp')
 im2 = Image.fromarray(bitmap.astype(np.uint8))
+im2.thumbnail((128,96))
+im2 = im2.convert(mode="L")
 im2 = im2.convert(mode="1")
+inoBits = im2.tobitmap("mode1")
+im2.save("mode1.bmp")
+with open("mode1.cpp", "wb") as binary_file:
+	binary_file.write(inoBits)
+	binary_file.close()
+"""
 ary2 = np.array(im2)
 print(ary2)
 im2.thumbnail((128,96))
 im2.save("mode1.bmp")
-
-
+"""
+"""
 i = Image.open("AlanTuring.bmp")
 
 inoBits = i.convert(mode="1")
@@ -42,10 +51,11 @@ with open("AlanTuring.cpp", "wb") as binary_file:
 	binary_file.close()
 
 i = Image.open("mode1.bmp")
-
-inoBits = i.convert(mode="1")
-inoBits = inoBits.tobitmap("AlanTuring")
-
+i = i.convert(mode="L")
+i = i.convert(mode="1")
+inoBits = i.tobitmap("mode1")
+	
 with open("mode1.cpp", "wb") as binary_file:
 	binary_file.write(inoBits)
 	binary_file.close()
+	"""
