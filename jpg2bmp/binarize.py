@@ -18,8 +18,7 @@ def binarize_image(prefix, img_path, target_path, threshold):
     img = img.convert("1")
     img.save(target_path)
     save_cpp(prefix, target_path)
-    inoBits = img.tobitmap(prefix)
-    print(inoBits)
+
     return target_path
 
 def save_cpp(prefix, img_path):
