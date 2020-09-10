@@ -15,7 +15,7 @@ int totalImages = 5;
 char headStart[] = "Image ";
 char headEnd[] = ", 00/00/0000";
 char footStart[] = "Bottom Text ";
-char footEnd[] = "00:00 CST"
+char footEnd[] = "00:00 CST";
 
 void setup() {
   // put your setup code here, to run once:
@@ -40,20 +40,30 @@ delay(2500);
 void loop() {
   // put your main code here, to run repeatedly:
 TV.clear_screen();
-compileText();
-TV.println(headOutput)
-TV.bitmap(0,0,imNum);
-TV.println(footOutput)
+char num = counter;
+//char imNum = "p" + num;
+//char headOutput = headStart + imNum + headEnd;
+//char footOutput = footStart + footEnd;
+TV.print("Look at this");
+TV.println(num);
+displayImage(counter);
 delay(2500);
 counter += 1;
-if counter > totalImages {
-	counter = 1
+if (counter > totalImages) {
+	counter = 1;
 }
 
 }
-
-void compileText() {
-	char imNum = "p" + counter
-	char headOutput = headStart + imNum + headEnd
-	char footOutput = footStart + footEnd
+void displayImage(int counter) {
+  if (counter = 1) {
+    TV.bitmap(0,10,p1);
+  } else if (counter = 2) {
+    TV.bitmap(0,10,p2);
+  } else if (counter = 3) {
+    TV.bitmap(0,10,p3);
+  } else if (counter = 4) {
+    TV.bitmap(0,10,p4);
+  } else if (counter =5) {
+    TV.bitmap(0,10,p5);
+  }
 }
