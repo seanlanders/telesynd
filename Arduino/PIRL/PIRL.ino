@@ -44,13 +44,24 @@ char num = counter;
 //char imNum = "p" + num;
 //char headOutput = headStart + imNum + headEnd;
 //char footOutput = footStart + footEnd;
-TV.print("Look at this");
-TV.println(num);
-displayImage(counter);
+TV.bitmap(0,10,p1);
+delay(2500);
+TV.clear_screen();
+TV.bitmap(0,10,p2);
+delay(2500);
+TV.clear_screen();
+TV.bitmap(0,10,p3);
+delay(2500);
+TV.clear_screen();
+TV.bitmap(0,10,p4);
+delay(2500);
+TV.clear_screen();
+TV.bitmap(0,10,p5);
 delay(2500);
 counter += 1;
 if (counter > totalImages) {
 	counter = 1;
+  TV.println("1");
 }
 
 }
