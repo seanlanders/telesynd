@@ -40,7 +40,7 @@
 #   Publish it. Write it. Sing it. Swing to it. Yodel it. 
 #   We wrote it, that's all we wanted to do.
 #
-#   This in no way should be constured abridge or negate the rights of
+#   This in no way should be construed to abridge or negate the rights of
 #   the code's original author, Robert Gallup.
 #	~~~
 import sys, array, os, textwrap, math, random, argparse

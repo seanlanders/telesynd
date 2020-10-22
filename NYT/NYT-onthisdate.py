@@ -96,6 +96,9 @@ if __name__ == '__main__':
 	#showStories(stories)
 	print(len(stories))
 	print(stories.keys())
+	for story in stories:
+		print(stories[story])
+
 """	
 	for x in range(peryear):
 		year.append(article[x])
