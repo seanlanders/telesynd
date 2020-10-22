@@ -1,6 +1,6 @@
 #include <avr/pgmspace.h>
-#ifndef P1_H
-#define P1_H
+#ifndef 35LRDX_H
+#define 35LRDX_H
 
-extern const unsigned char p1[];
+extern const unsigned char 35lrdX[];
 #endif
