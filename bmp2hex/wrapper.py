@@ -1,3 +1,24 @@
+#!/usr/bin/env python
+
+##@file wrapper.py
+# A wrapper for ease of using bmp2hex.
+# Used as a means of converting 1-bit JPG -> BMP -> hex,
+# later uploaded to an Arduino, to be displayed on a CRT
+# using TV-out.
+#
+#	~~~
+#
+#   Anti-Copyright License:
+#	This code is Copyrighted in U.S., under MIT Opensource License, 
+#   and anybody caught usin it without our permission, 
+#   will be mighty good friends of ourn, cause we don't give a dern.
+# 
+#   Publish it. Write it. Sing it. Swing to it. Yodel it. 
+#   We wrote it, that's all we wanted to do.
+#   S. Landers (sean.landers@gmail.com) 09-09-2020
+#	~~~
+
+
 import bmp2hex as b2h
 import glob
 
